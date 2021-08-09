@@ -1,0 +1,44 @@
+<?php
+
+
+$array = [
+    'first_bouquet' => [
+            'limit' => 50,
+            'value' => 500
+        ],
+    'second_bouquet' => [
+            'limit' => 100,
+            'value' => 1000
+        ],
+    'third_bouquet' => [
+            'limit' => 150,
+            'value' => 1500
+        ]
+    ];
+
+
+function invoiceCollect(int $km):int
+{
+    global $array;
+    
+    $amount = 0;
+  
+    if($km <= $array['first_bouquet']['limit'])
+    {
+        $amount = $array['first_bouquet']['value'];
+        
+    } elseif ($km > $array['first_bouquet']['limit'] && $km <= $array['second_bouquet']['limit']){
+        
+        $amount = $array['second_bouquet']['value'];
+        
+    } elseif ($km > $array['second_bouquet']['limit'] && $km <= $array['third_bouquet']['limit'] || $km > $array['third_bouquet']['limit']){
+        
+        $amount = $array['third_bouquet']['value'];
+    }
+    
+    return $amount;
+}
+
+
+echo invoiceCollect(100);
+
